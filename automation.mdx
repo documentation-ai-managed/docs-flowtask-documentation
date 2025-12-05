@@ -1,0 +1,167 @@
+---
+title: Automation
+description: Set up intelligent automations to streamline your workflows
+---
+
+## Automation Overview
+
+FlowTask's automation engine uses AI to create intelligent workflows that adapt to your team's patterns and reduce manual work.
+
+<Columns cols={3}>
+  <Card title="Trigger-Based" icon="zap" href="#triggers">
+    Automations triggered by events like task completion or time-based schedules.
+  </Card>
+  <Card title="Condition-Driven" icon="filter" href="#conditions">
+    Execute actions only when specific conditions are met.
+  </Card>
+  <Card title="AI-Optimized" icon="brain" href="#ai-optimization">
+    Automations that learn and improve over time.
+  </Card>
+</Columns>
+
+## Setting Up Automations
+
+<Steps>
+  <Step title="Access Automation" icon="settings">Navigate to Project Settings > Automation tab</Step>
+  <Step title="Choose Template" icon="template">Select from pre-built templates or create custom</Step>
+  <Step title="Configure Trigger" icon="play">Set up what starts the automation</Step>
+  <Step title="Define Actions" icon="cog">Specify what the automation should do</Step>
+  <Step title="Test and Save" icon="check">Test the automation and save it</Step>
+</Steps>
+
+<Callout kind="tip">Start with simple automations and gradually add complexity as you become familiar with the system.</Callout>
+
+## Common Automation Patterns
+
+<Tabs>
+  <Tab title="Task Management" icon="check-square">
+    <ExpandableGroup>
+      <Expandable title="Auto-assign tasks" default-open="true">
+        Automatically assign tasks based on keywords in the title or team member availability.
+      </Expandable>
+      <Expandable title="Deadline reminders" default-open="false">
+        Send notifications when tasks are approaching their due dates.
+      </Expandable>
+      <Expandable title="Status updates" default-open="false">
+        Update task status based on external events or time triggers.
+      </Expandable>
+    </ExpandableGroup>
+  </Tab>
+  <Tab title="Project Coordination" icon="folder">
+    <ExpandableGroup>
+      <Expandable title="Milestone notifications" default-open="true">
+        Notify stakeholders when project milestones are reached.
+      </Expandable>
+      <Expandable title="Resource allocation" default-open="false">
+        Automatically allocate resources based on project priority.
+      </Expandable>
+      <Expandable title="Progress reports" default-open="false">
+        Generate and send weekly project progress reports.
+      </Expandable>
+    </ExpandableGroup>
+  </Tab>
+  <Tab title="Team Communication" icon="message-square">
+    <ExpandableGroup>
+      <Expandable title="Slack notifications" default-open="true">
+        Send updates to Slack channels when important events occur.
+      </Expandable>
+      <Expandable title="Email digests" default-open="false">
+        Send daily or weekly email summaries of team activity.
+      </Expandable>
+      <Expandable title="Meeting scheduling" default-open="false">
+        Automatically schedule meetings based on project status.
+      </Expandable>
+    </ExpandableGroup>
+  </Tab>
+</Tabs>
+
+## Advanced Automation Features
+
+<CodeGroup tabs="JavaScript,Python">
+  ````javascript
+// Create a custom automation
+const automation = await client.automations.create({
+  name: 'Task Completion Follow-up',
+  trigger: {
+    type: 'task.completed',
+    projectId: '123'
+  },
+  conditions: [
+    { field: 'priority', operator: 'equals', value: 'high' }
+  ],
+  actions: [
+    { type: 'send_email', to: 'manager@company.com', template: 'task_complete' }
+  ]
+});
+  ````
+  ````python
+# Advanced automation with conditions
+automation = client.automations.create(
+    name='Task Completion Follow-up',
+    trigger={
+        'type': 'task.completed',
+        'project_id': '123'
+    },
+    conditions=[
+        {'field': 'priority', 'operator': 'equals', 'value': 'high'}
+    ],
+    actions=[
+        {'type': 'send_email', 'to': 'manager@company.com', 'template': 'task_complete'}
+    ]
+)
+  ````
+</CodeGroup>
+
+## AI-Powered Automation
+
+FlowTask's AI learns from your team's behavior to suggest and optimize automations:
+
+<Expandable title="Smart Suggestions" default-open="true">
+  Based on your team's patterns, FlowTask suggests automations like "Auto-archive completed projects" or "Notify when tasks are overdue".
+</Expandable>
+
+<Expandable title="Performance Optimization" default-open="false">
+  AI analyzes automation effectiveness and suggests improvements, such as combining multiple automations or adjusting trigger conditions.
+</Expandable>
+
+<Expandable title="Predictive Actions" default-open="false">
+  FlowTask can predict when certain actions might be needed and proactively suggest automations before issues arise.
+</Expandable>
+
+## Integration Automations
+
+Connect FlowTask with your favorite tools:
+
+| Integration | Triggers | Actions |
+|-------------|----------|---------|
+| Slack | Message received, channel joined | Send message, create channel |
+| GitHub | PR created, issue opened | Create task, update status |
+| Google Calendar | Event created, reminder | Schedule meeting, set reminder |
+| Trello | Card moved, comment added | Update task, add comment |
+| Zapier | Custom webhooks, API calls | Any Zapier action |
+
+<Callout kind="info">FlowTask supports over 100 integrations through Zapier, allowing you to connect with virtually any web service.</Callout>
+
+## Automation Best Practices
+
+<Steps>
+  <Step title="Start Simple" icon="play">Begin with basic automations and test thoroughly</Step>
+  <Step title="Monitor Performance" icon="bar-chart">Track automation effectiveness and adjust as needed</Step>
+  <Step title="Document Rules" icon="file-text">Keep a record of your automation logic for maintenance</Step>
+  <Step title="Test Scenarios" icon="check">Test automations with various edge cases</Step>
+  <Step title="Review Regularly" icon="refresh">Audit and optimize automations quarterly</Step>
+</Steps>
+
+## Troubleshooting Automations
+
+<ExpandableGroup>
+  <Expandable title="Automation not triggering" default-open="false">
+    Check trigger conditions and ensure all required fields are present. Verify the automation is enabled.
+  </Expandable>
+  <Expandable title="Actions failing" default-open="false">
+    Review action configurations and check for permission issues with connected services.
+  </Expandable>
+  <Expandable title="Performance issues" default-open="false">
+    Too many automations can slow down your workspace. Consider consolidating or disabling unused ones.
+  </Expandable>
+</ExpandableGroup>

@@ -1,0 +1,190 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: FlowTask API
+  license:
+    name: MIT
+servers:
+  - url: https://api.flowtask.com/v1
+paths:
+  /projects:
+    get:
+      summary: List all projects for the authenticated user
+      operationId: listProjects
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: A paginated array of projects
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new project with AI-assisted structuring
+      operationId: createProject
+      responses:
+        201:
+          description: Project created successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /projects/{projectId}:
+    get:
+      summary: Retrieve details of a specific project including tasks and milestones
+      operationId: getProject
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          description: The unique identifier of the project to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: Project details with full task and milestone information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      summary: Update an existing project with new information or AI suggestions
+      operationId: updateProject
+      responses:
+        200:
+          description: Project updated successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /tasks:
+    get:
+      summary: List tasks across all projects with filtering options
+      operationId: listTasks
+      parameters:
+        - name: projectId
+          in: query
+          description: Filter tasks by project ID
+          required: false
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Filter tasks by status (pending, in_progress, completed)
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: A paginated list of tasks matching the filter criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tasks'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new task with automatic priority assignment
+      operationId: createTask
+      responses:
+        201:
+          description: Task created successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Project:
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [active, completed, archived]
+    Projects:
+      type: array
+      items:
+        $ref: '#/components/schemas/Project'
+    Task:
+      required:
+        - id
+        - title
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        projectId:
+          type: string
+        assigneeId:
+          type: string
+        status:
+          type: string
+          enum: [pending, in_progress, completed]
+        priority:
+          type: string
+          enum: [low, medium, high, urgent]
+        dueDate:
+          type: string
+          format: date
+    Tasks:
+      type: array
+      items:
+        $ref: '#/components/schemas/Task'
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

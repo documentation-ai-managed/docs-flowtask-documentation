@@ -1,0 +1,138 @@
+---
+title: Projects
+description: Create, manage, and organize projects with AI assistance
+---
+
+## Creating Projects
+
+FlowTask makes project creation effortless with AI-powered assistance that helps you structure your ideas into actionable projects.
+
+<Steps>
+  <Step title="Start New Project" icon="plus">Click the "New Project" button in your dashboard</Step>
+  <Step title="Describe Your Idea" icon="message-square">Enter a description of your project idea or goal</Step>
+  <Step title="AI Analysis" icon="brain">FlowTask analyzes your description and suggests a project structure</Step>
+  <Step title="Customize" icon="settings">Modify the suggested structure to fit your needs</Step>
+  <Step title="Save Project" icon="save">Save your project and start collaborating</Step>
+</Steps>
+
+<Callout kind="tip">The more detailed your initial description, the better FlowTask can suggest an optimal project structure.</Callout>
+
+## Project Structure
+
+FlowTask organizes projects hierarchically with tasks, subtasks, and milestones.
+
+<Columns cols={2}>
+  <Card title="Tasks" icon="check-square" href="#tasks">
+    Individual work items that can be assigned, tracked, and completed.
+  </Card>
+  <Card title="Milestones" icon="flag" href="#milestones">
+    Major checkpoints that mark significant progress in your project.
+  </Card>
+</Columns>
+
+<Tabs>
+  <Tab title="Task Management" icon="list">
+    <Steps>
+      <Step title="Add Tasks">Use the + button to add new tasks to your project</Step>
+      <Step title="Assign Members">Assign tasks to team members with due dates</Step>
+      <Step title="Set Dependencies">Link tasks that depend on others completing first</Step>
+      <Step title="Track Progress">Update task status as work progresses</Step>
+    </Steps>
+  </Tab>
+  <Tab title="Milestones" icon="target">
+    <Steps>
+      <Step title="Create Milestones">Define key project phases or deliverables</Step>
+      <Step title="Link Tasks">Associate tasks with specific milestones</Step>
+      <Step title="Monitor Progress">Track milestone completion status</Step>
+      <Step title="Celebrate Success">Mark milestones complete and notify the team</Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## AI-Powered Features
+
+FlowTask's AI capabilities help optimize your project workflow:
+
+<ExpandableGroup>
+  <Expandable title="Smart Task Breakdown" default-open="true">
+    When you create a large task, FlowTask can automatically break it down into smaller, manageable subtasks with estimated timeframes.
+  </Expandable>
+  <Expandable title="Resource Optimization" default-open="false">
+    AI analyzes team member workloads and suggests optimal task assignments based on skills, availability, and past performance.
+  </Expandable>
+  <Expandable title="Risk Prediction" default-open="false">
+    FlowTask identifies potential project risks and suggests mitigation strategies based on similar past projects.
+  </Expandable>
+</ExpandableGroup>
+
+## Collaboration Features
+
+<CodeGroup tabs="JavaScript,Python">
+  ````javascript
+// Create a project with team members
+const project = await client.projects.create({
+  title: 'Q4 Marketing Campaign',
+  description: 'Launch new product marketing',
+  members: ['user1@company.com', 'user2@company.com'],
+  dueDate: '2024-12-31'
+});
+  ````
+  ````python
+# Create collaborative project
+project = client.projects.create(
+    title='Q4 Marketing Campaign',
+    description='Launch new product marketing',
+    members=['user1@company.com', 'user2@company.com'],
+    due_date='2024-12-31'
+)
+  ````
+</CodeGroup>
+
+## Project Templates
+
+Speed up project creation with pre-built templates:
+
+| Template | Description | Use Case |
+|----------|-------------|----------|
+| Software Development | Sprint planning, code reviews, testing | Tech projects |
+| Marketing Campaign | Content creation, social media, analytics | Marketing initiatives |
+| Product Launch | Planning, execution, post-launch analysis | Product releases |
+| Event Planning | Venue booking, vendor management, timeline | Events and conferences |
+
+<Callout kind="info">Templates include suggested tasks, milestones, and automation rules tailored to specific project types.</Callout>
+
+## Advanced Project Features
+
+<Expandable title="Custom Fields and Workflows" default-open="false">
+  Add custom fields to projects for additional metadata and create custom workflows that match your team's processes.
+</Expandable>
+
+<Expandable title="Project Analytics" default-open="false">
+  View detailed analytics on project progress, team productivity, and bottleneck identification using FlowTask's dashboard.
+</Expandable>
+
+## API Integration
+
+Integrate project data with external systems:
+
+<Tabs>
+  <Tab title="Webhooks" icon="webhook">
+    Receive real-time updates when projects change.
+    ````json
+    {
+      "event": "project.updated",
+      "data": {
+        "projectId": "123",
+        "changes": ["status", "dueDate"]
+      }
+    }
+    ````
+  </Tab>
+  <Tab title="REST API" icon="code">
+    Full programmatic access to project operations.
+    ````bash
+    curl -X GET "https://api.flowtask.com/v1/projects/123" \
+      -H "Authorization: Bearer YOUR_API_KEY"
+    ````
+  </Tab>
+</Tabs>

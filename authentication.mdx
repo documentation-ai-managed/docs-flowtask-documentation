@@ -1,0 +1,126 @@
+---
+title: Authentication
+description: Learn how to authenticate with FlowTask API and manage access tokens
+---
+
+## Authentication Methods
+
+FlowTask supports multiple authentication methods to ensure secure access to your projects and data. Choose the method that best fits your use case.
+
+<Tabs>
+  <Tab title="API Keys" icon="key">
+    <Steps>
+      <Step title="Generate API Key">Log into your FlowTask dashboard and navigate to Settings > API Keys</Step>
+      <Step title="Copy Key">Copy the generated API key to a secure location</Step>
+      <Step title="Use in Requests">Include the key in your API requests using the Authorization header</Step>
+    </Steps>
+    <Callout kind="info">API keys provide full access to your account. Store them securely and rotate regularly.</Callout>
+  </Tab>
+  <Tab title="OAuth 2.0" icon="lock">
+    <Steps>
+      <Step title="Register Application">Register your application in the FlowTask developer portal</Step>
+      <Step title="Implement OAuth Flow">Implement the OAuth 2.0 authorization code flow</Step>
+      <Step title="Handle Tokens">Store and refresh access tokens securely</Step>
+    </Steps>
+    <Callout kind="tip">OAuth 2.0 is recommended for applications that need user-specific access with limited scopes.</Callout>
+  </Tab>
+  <Tab title="JWT Tokens" icon="shield">
+    <Steps>
+      <Step title="Obtain JWT">Use your API key to request a JWT token from the authentication endpoint</Step>
+      <Step title="Include in Requests">Add the JWT to the Authorization header as Bearer token</Step>
+      <Step title="Handle Expiration">Implement token refresh logic for expired tokens</Step>
+    </Steps>
+    <Callout kind="alert">JWT tokens expire after 24 hours. Implement automatic refresh to avoid authentication errors.</Callout>
+  </Tab>
+</Tabs>
+
+## API Key Authentication
+
+To authenticate using API keys, include your key in the Authorization header of all requests:
+
+<CodeGroup tabs="curl,JavaScript,Python">
+  ````bash
+curl -X GET "https://api.flowtask.com/v1/projects" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json"
+  ````
+  ````javascript
+const response = await fetch('https://api.flowtask.com/v1/projects', {
+  headers: {
+    'Authorization': `Bearer ${YOUR_API_KEY}`,
+    'Content-Type': 'application/json'
+  }
+});
+  ````
+  ````python
+import requests
+
+response = requests.get('https://api.flowtask.com/v1/projects',
+  headers={
+    'Authorization': f'Bearer {YOUR_API_KEY}',
+    'Content-Type': 'application/json'
+  })
+  ````
+</CodeGroup>
+
+## OAuth 2.0 Flow
+
+For applications requiring user consent, use OAuth 2.0:
+
+<Steps>
+  <Step title="Authorization Request">Redirect users to FlowTask authorization URL</Step>
+  <Step title="User Consent">User grants permissions to your application</Step>
+  <Step title="Authorization Code">Receive authorization code via callback</Step>
+  <Step title="Token Exchange">Exchange code for access and refresh tokens</Step>
+  <Step title="API Access">Use access token for authenticated requests</Step>
+</Steps>
+
+<Expandable title="OAuth Scopes" default-open="false">
+  FlowTask supports the following OAuth scopes:
+  - `read:projects` - Read access to projects
+  - `write:projects` - Create and modify projects
+  - `read:tasks` - Read access to tasks
+  - `write:tasks` - Create and modify tasks
+  - `admin:team` - Manage team members
+</Expandable>
+
+## Token Management
+
+<Callout kind="danger">Never expose your API keys or tokens in client-side code or public repositories.</Callout>
+
+Best practices for token management:
+
+- Store tokens securely using environment variables or secure vaults
+- Implement token rotation every 30 days
+- Use HTTPS for all API communications
+- Monitor token usage and revoke compromised tokens immediately
+
+<ExpandableGroup>
+  <Expandable title="How to revoke tokens?" default-open="false">
+    Visit your FlowTask dashboard Settings > Security > Active Sessions to revoke specific tokens or API keys.
+  </Expandable>
+  <Expandable title="Rate limiting" default-open="false">
+    FlowTask implements rate limiting based on your plan: Free tier allows 1000 requests/hour, Pro tier allows 10000 requests/hour.
+  </Expandable>
+</ExpandableGroup>
+
+## Troubleshooting
+
+Common authentication issues and solutions:
+
+| Issue | Solution |
+|-------|----------|
+| Invalid API Key | Verify the key is correct and not expired |
+| Token Expired | Refresh your JWT token or regenerate API key |
+| Insufficient Permissions | Check OAuth scopes or API key permissions |
+| Rate Limit Exceeded | Wait for rate limit reset or upgrade your plan |
+
+## Security Best Practices
+
+<Steps>
+  <Step title="Use HTTPS">Always use HTTPS for API requests</Step>
+  <Step title="Secure Storage">Store keys and tokens in secure environments</Step>
+  <Step title="Regular Rotation">Rotate API keys every 30-90 days</Step>
+  <Step title="Monitor Usage">Set up alerts for unusual API activity</Step>
+  <Step title="Least Privilege">Use the minimum required permissions</Step>
+</Steps>

@@ -1,104 +1,49 @@
 ---
 title: Introduction
-description: Overview of FlowTask and its core capabilities
+description: >-
+  Ideas in. Workspaces out. Welcome to our documentation, where you can learn
+  how to create workspaces, organize your work, and get the most out of
+  AI-powered structure generation.
 ---
+### Create your first workspace
 
-## Getting Started
+Creating a workspace in FlowTask takes seconds. Simply describe what you're working on, and FlowTask generates everything you need.
 
-FlowTask is an innovative platform that leverages artificial intelligence to help users turn their ideas into organized projects, automate mundane tasks, and boost team productivity. Whether you're a solo entrepreneur, small team, or large organization, FlowTask transforms chaotic ideas into structured workflows that drive results.
+**Your first workspace**
 
-<Columns cols={3}>
-  <Card title="AI-Powered Organization" icon="brain" href="#ai-organization">
-    Turn scattered thoughts into organized projects using advanced AI algorithms that understand context and relationships.
-  </Card>
-  <Card title="Smart Automation" icon="zap" href="#smart-automation">
-    Automate repetitive tasks across your workflow with intelligent triggers and actions that learn from your patterns.
-  </Card>
-  <Card title="Team Productivity" icon="users" href="#team-productivity">
-    Boost collaboration with real-time updates, shared workspaces, and AI-assisted communication tools.
-  </Card>
-</Columns>
+The first step to using FlowTask is creating a workspace. Click the "Create New Workspace" button at the top of your dashboard to get started.
 
-## Key Features
+You have two options:
 
-<Steps>
-  <Step title="Idea Capture" icon="lightbulb">
-    Capture ideas instantly with our AI-powered note-taking that organizes thoughts into actionable items.
-  </Step>
-  <Step title="Project Structuring" icon="folder">
-    Transform ideas into structured projects with automated task breakdown and dependency mapping.
-  </Step>
-  <Step title="Automation Setup" icon="settings">
-    Set up intelligent automations that trigger based on project milestones, time, or custom conditions.
-  </Step>
-  <Step title="Team Collaboration" icon="users">
-    Share projects with team members and receive AI-suggested improvements for better productivity.
-  </Step>
-</Steps>
+- Start with a prompt
 
-<Callout kind="info">FlowTask integrates seamlessly with popular tools like Slack, Trello, and Google Workspace to maintain your existing workflows while adding AI-powered enhancements.</Callout>
+- Import from template
 
-## Quick Start Guide
+**Describe your project**
 
-<Tabs>
-  <Tab title="New Users" icon="user-plus">
-    <Steps>
-      <Step title="Sign Up">Create your free account at flowtask.com</Step>
-      <Step title="First Project">Start with a blank project or use our AI assistant to generate one from your ideas</Step>
-      <Step title="Invite Team">Add team members and set permissions</Step>
-    </Steps>
-  </Tab>
-  <Tab title="Existing Teams" icon="users">
-    <Steps>
-      <Step title="Import Data">Import projects from Trello, Asana, or CSV files</Step>
-      <Step title="Set Automations">Configure your first automation rules</Step>
-      <Step title="Customize Workspace">Personalize your dashboard and notification preferences</Step>
-    </Steps>
-  </Tab>
-</Tabs>
+When creating a workspace, you will be prompted to describe what you're working on. This can be as specific or as broad as you'd like.
 
-<ExpandableGroup>
-  <Expandable title="What makes FlowTask different from other project tools?" default-open="false">
-    FlowTask combines traditional project management with cutting-edge AI that actively learns from your work patterns, suggesting optimizations and automating repetitive tasks. Unlike static tools, FlowTask evolves with your team's needs.
-  </Expandable>
-  <Expandable title="Is my data secure?" default-open="false">
-    Yes, FlowTask uses enterprise-grade encryption and follows SOC 2 compliance standards. Your data is stored securely and never shared with third parties without your explicit consent.
-  </Expandable>
-</ExpandableGroup>
+For example:
 
-## Platform Overview
+- "Launch a product beta with 50 users"
 
-FlowTask works across all major platforms and devices:
+- "Plan our Q1 marketing campaign"
 
-| Feature | Web App | Mobile App | Desktop App |
-|---------|---------|------------|-------------|
-| Project Creation | ✅ | ✅ | ✅ |
-| AI Automation | ✅ | ✅ | ✅ |
-| Team Collaboration | ✅ | ✅ | ✅ |
-| Offline Access | ❌ | ✅ | ✅ |
+- "Onboard a new engineering hire"
 
-<CodeGroup tabs="JavaScript,Python">
-  ````javascript
-// Quick start with FlowTask SDK
-const flowtask = require('flowtask-sdk');
-const client = new flowtask.Client({ apiKey: 'your-api-key' });
+The more context you provide, the better your workspace will be. Include details like team size, timeline, and desired outcomes.
 
-// Create a new project
-const project = await client.projects.create({
-  title: 'My AI Project',
-  description: 'Using AI to organize tasks'
-});
-  ````
-  ````python
-from flowtask import FlowTask
+**Review your workspace**
 
-# Initialize client
-client = FlowTask(api_key='your-api-key')
+FlowTask will instantly generate a complete workspace with:
 
-# Create project
-project = client.projects.create(
-    title='My AI Project',
-    description='Using AI to organize tasks'
-)
-  ````
-</CodeGroup>
+- Task hierarchies broken down into actionable steps
+
+- Draft documentation for key areas
+
+- Pre-configured forms and templates
+
+- Organized collaboration spaces
+
+You can start working immediately, or refine and customize the structure to fit your needs.
+
